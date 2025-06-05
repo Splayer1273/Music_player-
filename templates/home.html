@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 40px;
+      background-color: rgba(30, 30, 47, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #00ffe1;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 12px 25px;
+      margin: 10px;
+      background: #00ffe1;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background: #00bfa5;
+    }
+
+    .logo {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo"><i class="fas fa-music"></i></div>
+    <h1>Welcome to Music Player</h1>
+    <p>Your personalized audio experience. Stream your favorite songs, read lyrics, and discover more every day.</p>
+    <div class="buttons">
+      <a href="{% url 'player' %}">🎵 Start Listening</a>
+      <a href="{% url 'about' %}">ℹ️ About</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .music-player, .next-player {
+      background-color: #1e1e2f;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      margin-bottom: 30px;
+    }
+
+    .cover img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .titre h1 {
+      font-size: 24px;
+      margin: 10px 0 0;
+      color: #00ffe1;
+    }
+
+    .titre h3 {
+      font-size: 18px;
+      margin: 0;
+      color: #f4f4f4;
+    }
+
+    .lecteur {
+      margin-top: 20px;
+    }
+
+    audio {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .pagination a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    .pagination i:hover {
+      color: #00ffe1;
+    }
+
+    .right-section {
+      background-color: #2a2a3c;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .lyrics-container {
+      max-height: 200px;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #1f1f2e;
+    }
+
+    .song-lyrics {
+      white-space: pre-wrap;
+      color: #dcdcdc;
+      line-height: 1.6;
+    }
+
+    .next-player h2 {
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .play-next-button {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .play-next-button a button {
+      padding: 10px 20px;
+      background: #00ffe1;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .play-next-button a button:hover {
+      background: #00bfa5;
+    }
+  </style>
+</head>
+<body>
+
+  {% for item in page_obj %}
+  <div class="music-player">
+    <div class="cover">
+      <img alt="Cover" src="{{ item.image.url }}">
+    </div>
+
+    <div class="titre">
+      <h3>{{ item.artist }}</h3>
+      <h1>{{ item.title }}</h1>
+    </div>
+
+    <div class="lecteur">
+      <audio controls>
+        <source src="{% if item.audio_file %}{{ item.audio_file.url }}{% else %}{{ item.audio_link }}{% endif %}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="pagination">
+      <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}">
+        <i class="fa fa-step-backward fa-2x"></i>
+      </a>
+      <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}">
+        <i class="fa fa-step-forward fa-2x"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Lyrics Section -->
+  <div class="right-section">
+    <h2>Lyrics</h2>
+    <div class="lyrics-container">
+      <p id="song-lyrics" class="song-lyrics">{{ item.lyrics }}</p>
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- Next Song Section -->
+  {% if next_song %}
+  <div class="next-player">
+    <h2>Up Next</h2>
+    <div class="cover">
+      <img src="{{ next_song.image.url }}" alt="Next Cover">
+    </div>
+    <div class="titre">
+      <h3>{{ next_song.artist }}</h3>
+      <h1>{{ next_song.title }}</h1>
+    </div>
+
+    <div class="lecteur">
+      <audio controls>
+        <source src="{% if next_song.audio_file %}{{ next_song.audio_file.url }}{% else %}{{ next_song.audio_link }}{% endif %}" type="audio/mp3">
+      </audio>
+    </div>
+
+    <div class="play-next-button">
+      <a href="?page={{ page_obj.next_page_number }}">
+        <button>Play Next Song</button>
+      </a>
+    </div>
+  </div>
+  {% endif %}
+
+</body>
+</html>
