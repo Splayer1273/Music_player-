@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Music Player Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: #fff;
+            padding: 30px;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .song-card {
+            background-color: #1e1e2f;
+            border-radius: 15px;
+            width: 280px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .details {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details h3 {
+            margin: 0 0 5px;
+            color: #00ffe1;
+            font-size: 18px;
+        }
+
+        .details h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+            color: #fff;
+        }
+
+        audio {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: auto;
+        }
+
+        .lyrics {
+            background-color: #2a2a3c;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            max-height: 100px;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #dcdcdc;
+            white-space: pre-wrap;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .pagination a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 24px;
+        }
+
+        .pagination a:hover {
+            color: #00ffe1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-align:center; margin-bottom: 40px; color: #00ffe1;">Music Dashboard</h1>
+
+    <form method="get" action="" style="text-align:center; margin-bottom: 30px;">
+        <input type="text" name="q" placeholder="Search songs by title or artist" value="{{ query|default:'' }}"
+            style="padding: 10px; width: 300px; border-radius: 5px; border: none;" />
+        <button type="submit"
+            style="padding: 10px 15px; border-radius: 5px; background: #00ffe1; border: none; cursor: pointer;">
+            Search
+        </button>
+    </form>
+
+
+    <div class="dashboard">
+        {% for song in page_obj %}
+        <div class="song-card">
+            <div class="cover">
+                {% if song.cover_image %}
+                <img src="{{ song.cover_image.url }}" alt="{{ song.title }} Cover">
+                {% else %}
+                <img src="/static/default.jpg" alt="Default Cover">
+                {% endif %}
+            </div>
+            <div class="details">
+                <h3>{{ song.title }}</h3>
+                <h2>{{ song.artist }}</h2>
+                <audio controls>
+                    <source src="{{ song.audio_file.url }}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+                {% if song.lyrics %}
+                <div class="lyrics">{{ song.lyrics }}</div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+        {% endif %}
+
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+        {% endif %}
+    </div>
+</body>
+
+</html>
