@@ -5,5 +5,8 @@ from django.urls import path
 
 app_name = "App"
 urlpatterns = [
-    path("",views.index,name="index"),
+    path("index/",views.index,name="index"),
+    path('', views.home, name='home'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    
 ]
