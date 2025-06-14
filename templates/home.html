@@ -39,10 +39,15 @@
       margin-bottom: 30px;
     }
 
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
     .buttons a {
-      display: inline-block;
       padding: 12px 25px;
-      margin: 10px;
       background: #00ffe1;
       color: #000;
       text-decoration: none;
@@ -60,29 +65,28 @@
       margin-bottom: 20px;
       color: #fff;
     }
+
+    @media (max-width: 500px) {
+      .buttons a {
+        width: 100%;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="buttons ">
-    <a href="index" >Register</a>
-
-    <div class="buttons">
-    <a href="index" >Login</a>
-  
   <div class="container">
     <div class="logo"><i class="fas fa-music"></i></div>
     <h1>Welcome to Music Player</h1>
     <p>Your personalized audio experience. Stream your favorite songs, read lyrics, and discover more every day.</p>
-
-    <div class="buttons">
-    <a href="index" >🎵 Start Listening</a>
-
     
-
+    <div class="buttons">
+      <a href="{% url 'register' %}">Register</a>
+      <a href="{% url 'login' %}">Login</a>
+      <a href="/dashboard/"> Start Listening</a>
     </div>
-
   </div>
- 
+
 </body>
 </html>

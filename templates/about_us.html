@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .home-button {
+      align-self: flex-start;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: #00ffe1;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 30px;
+      color: #000;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .home-button:hover {
+      background: #00bfa5;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background-color: rgba(30, 30, 47, 0.95);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    h1, h2 {
+      color: #00ffe1;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #e0e0e0;
+    }
+
+    ul {
+      padding-left: 20px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #d0d0d0;
+    }
+
+    .info-section {
+      margin-top: 40px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="home-button" onclick="location.href='/dashboard/'">
+    <i class="fas fa-arrow-left"></i> Back to Dashboard
+  </button>
+
+  <div class="container">
+    <h1>About This Project</h1>
+    <p>
+      This Music Player web application allows users to upload, manage, and listen to their favorite songs in a visually appealing and responsive interface.
+      It is designed with simplicity, performance, and modern design in mind.
+    </p>
+
+    <h2>Project Features</h2>
+    <ul>
+      <li>User Registration and Login</li>
+      <li>Upload songs with metadata (title, artist, genre)</li>
+      <li>Audio file storage and playback</li>
+      <li>Responsive UI with a sleek music-themed design</li>
+      <li>Message feedback for user actions (e.g., song added, errors)</li>
+    </ul>
+
+    <h2>Tech Stack</h2>
+    <ul>
+      <li><strong>Backend:</strong> Django (Python)</li>
+      <li><strong>Frontend:</strong> HTML, CSS (with Tailwind), JavaScript, Django Templates (Jinja-like)</li>
+      <li><strong>Database:</strong> SQLite (can be upgraded to PostgreSQL)</li>
+      <li><strong>Media:</strong> Django’s media file handling</li>
+    </ul>
+
+    <div class="info-section">
+      <h2>About the Developer</h2>
+      <p>
+        Hi, I'm <strong>Siddesh Sonvane</strong>, a passionate web developer and tech enthusiast based in India.
+        I enjoy building user-friendly and clean web applications. This project was built as part of my personal learning journey to master Django and improve my full-stack development skills.
+      </p>
+      <p>
+        <strong>Skills:</strong> Python, Django, JavaScript, React, PostgreSQL, Git  
+        <br />
+        <strong>GitHub:</strong> <a href="https://github.com/SiddeshSonvane" style="color: #00ffe1;">@SiddeshSonvane</a>  
+        <br />
+        <strong>Email:</strong> Sonvanesiddesh@email.com
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

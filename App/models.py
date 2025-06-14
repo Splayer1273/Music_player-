@@ -4,7 +4,7 @@ from django.core.files.base import ContentFile
 from mutagen import File as MutagenFile
 from mutagen.id3 import ID3, APIC, error as ID3Error
 
-class song(models.Model):
+class Song(models.Model):
     audio_file = models.FileField(upload_to='songs/')
     title = models.CharField(max_length=200, blank=True)
     artist = models.CharField(max_length=200, blank=True)
