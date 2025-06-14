@@ -37,9 +37,7 @@ def register(request):
             messages.error(request, 'Email already exists.')
             return redirect('register')
 
-        elif User.objects.filter(phone_number=phone_number).exists():
-            messages.error(request, 'Phone number already exists.')
-            return redirect('register')
+      
 
         # You'll need a custom user model or profile model for phone_number
         # Otherwise, skip this check or manage it separately
