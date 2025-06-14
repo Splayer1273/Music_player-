@@ -133,4 +133,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-ALLOWED_HOSTS = ['musicplayer.onrender.com']
+ALLOWED_HOSTS = ['music-player-rq95.onrender.com']
+
