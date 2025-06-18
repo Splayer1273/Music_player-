@@ -235,7 +235,18 @@
 <body>
 
   <div class="btn-group">
-    {% comment %} <button onclick="location.href='/add_song/'">Add Song</button> {% endcomment %}
+   <button 
+  onclick="location.href='/add_song/'" 
+  style="
+    background: linear-gradient(to right, #141e30, #243b55);
+    border: none;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+  ">
+</button>
+
     <button onclick="location.href='/logout/'">Logout</button>
     <button onclick="location.href='/login/'">Login</button>
     <button onclick="location.href='/register/'">Register</button>
