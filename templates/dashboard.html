@@ -235,7 +235,7 @@
 <body>
 
   <div class="btn-group">
-    <button onclick="location.href='/add_song/'">Add Song</button>
+    {% comment %} <button onclick="location.href='/add_song/'">Add Song</button> {% endcomment %}
     <button onclick="location.href='/logout/'">Logout</button>
     <button onclick="location.href='/login/'">Login</button>
     <button onclick="location.href='/register/'">Register</button>
@@ -270,13 +270,13 @@
         {% if song.cover_image %}
           <img src="{{ song.cover_image.url }}" alt="{{ song.title }} Cover">
         {% else %}
-          <img src="/static/default.jpg" alt="Default Cover">
+          <img src="{% static 'default.jpg' %}" alt="Default Cover">
         {% endif %}
       </div>
       <div class="details">
         <h3>{{ song.title }}</h3>
         <h2>{{ song.artist }}</h2>
-        <audio controls>
+        <audio class="audio-player" controls>
           <source src="{{ song.audio_file.url }}" type="audio/mp3">
           Your browser does not support the audio element.
         </audio>
@@ -292,14 +292,26 @@
     {% if page_obj.has_previous %}
       <a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
     {% endif %}
-
     <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-
     {% if page_obj.has_next %}
       <a href="?page={{ page_obj.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
     {% endif %}
   </div>
 
-</body>
+  <!-- 🔽 JavaScript: Play only one song at a time -->
+  <script>
+    const players = document.querySelectorAll('.audio-player');
 
+    players.forEach(player => {
+      player.addEventListener('play', () => {
+        players.forEach(other => {
+          if (other !== player) {
+            other.pause();
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
 </html>
