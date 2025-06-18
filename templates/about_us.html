@@ -33,6 +33,7 @@
       color: #000;
       font-weight: bold;
       transition: background 0.3s ease;
+      font-size: 1rem;
     }
 
     .home-button:hover {
@@ -46,6 +47,7 @@
       padding: 40px;
       border-radius: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-sizing: border-box;
     }
 
     h1, h2 {
@@ -57,6 +59,7 @@
       font-size: 18px;
       line-height: 1.7;
       color: #e0e0e0;
+      margin-bottom: 1rem;
     }
 
     ul {
@@ -64,6 +67,7 @@
       font-size: 17px;
       line-height: 1.8;
       color: #d0d0d0;
+      margin-bottom: 1.5rem;
     }
 
     .info-section {
@@ -76,6 +80,56 @@
 
     a:hover {
       text-decoration: underline;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 15px;
+      }
+
+      .home-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        padding: 25px 20px;
+        border-radius: 15px;
+      }
+
+      p, ul {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .home-button {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 1rem;
+        margin-bottom: 25px;
+      }
+
+      .container {
+        padding: 20px 15px;
+        border-radius: 10px;
+      }
+
+      h1, h2 {
+        font-size: 1.4rem;
+      }
+
+      p, ul {
+        font-size: 15px;
+        line-height: 1.5;
+      }
     }
   </style>
 </head>

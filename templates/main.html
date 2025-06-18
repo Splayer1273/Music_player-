@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Music Library</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
   <style>
     body {
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
@@ -18,13 +20,20 @@
       align-items: center;
     }
 
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    section[aria-label="Music Library"] {
+      width: 100%;
+      max-width: 700px;
+    }
+
     .song-card {
       background: #1c1c2e;
       padding: 20px;
       margin-bottom: 30px;
       border-radius: 12px;
-      width: 90%;
-      max-width: 600px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     }
 
@@ -73,49 +82,51 @@
   </style>
 </head>
 <body>
-  
 
   <h1>🎵 Music Library</h1>
 
-  {% for song in page_obj %}
-    <div class="song-card">
-      <div class="cover">
-        {% if song.cover_image %}
-          <img src="{{ song.cover_image.url }}" alt="{{ song.title }} Cover">
-        {% else %}
-          <img src="/static/default.jpg" alt="Default Cover">
-        {% endif %}
-      </div>
+  <section aria-label="Music Library">
+    {% for song in page_obj %}
+      <article class="song-card" role="listitem">
+        <div class="cover">
+          {% if song.cover_image %}
+            <img src="{{ song.cover_image.url }}" alt="Cover image for {{ song.title|default:'Unknown Title' }}">
+          {% else %}
+            <img src="{% static 'default.jpg' %}" alt="Default cover image">
+          {% endif %}
+        </div>
 
-      <div class="song-info">
-        <h2>{{ song.title|default:"Unknown Title" }}</h2>
-        <h2>Artist: {{ song.artist|default:"Unknown Artist" }}</h2>
-        <h2>Album: {{ song.album|default:"Unknown Album" }}</h2>
-      </div>
+        <div class="song-info">
+          <h2>{{ song.title|default:"Unknown Title" }}</h2>
+          <h4>Artist: {{ song.artist|default:"Unknown Artist" }}</h4>
+          <h4>Album: {{ song.album|default:"Unknown Album" }}</h4>
+        </div>
 
-      <audio controls>
-        <source src="{{ song.audio_file.url }}" type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-  {% empty %}
-    <p>No songs uploaded yet.</p>
-  {% endfor %}
+        <audio controls>
+          <source src="{{ song.audio_file.url }}" type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+      </article>
+    {% empty %}
+      <p>No songs uploaded yet.</p>
+    {% endfor %}
+  </section>
 
-  <!-- Pagination -->
-  <div class="pagination">
+  <nav class="pagination" aria-label="Pagination navigation">
     {% if page_obj.has_previous %}
-      <a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+      <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous page">
+        <i class="fas fa-arrow-left"></i>
+      </a>
     {% endif %}
 
     <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
 
     {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+      <a href="?page={{ page_obj.next_page_number }}" aria-label="Next page">
+        <i class="fas fa-arrow-right"></i>
+      </a>
     {% endif %}
-  </div>
-
-  
+  </nav>
 
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Welcome to Music Player</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
   <style>
     body {
       margin: 0;
@@ -15,28 +18,39 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .container {
       max-width: 600px;
-      padding: 40px;
+      width: 100%;
+      padding: 40px 30px;
       background-color: rgba(30, 30, 47, 0.9);
       border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-sizing: border-box;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #00ffe1;
     }
 
     h1 {
-      font-size: 36px;
-      color: #00ffe1;
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      color: #00ffe1;
     }
 
     p {
-      font-size: 18px;
+      font-size: 1.125rem;
       line-height: 1.6;
       margin-bottom: 30px;
+      color: #dcdcdc;
     }
 
     .buttons {
@@ -47,45 +61,44 @@
     }
 
     .buttons a {
+      display: inline-block;
       padding: 12px 25px;
       background: #00ffe1;
       color: #000;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
       border-radius: 5px;
       transition: background 0.3s ease;
+      min-width: 140px;
+      text-align: center;
     }
 
-    .buttons a:hover {
+    .buttons a:hover,
+    .buttons a:focus {
       background: #00bfa5;
-    }
-
-    .logo {
-      font-size: 40px;
-      margin-bottom: 20px;
-      color: #fff;
+      outline: none;
     }
 
     @media (max-width: 500px) {
       .buttons a {
         width: 100%;
-        text-align: center;
+        min-width: unset;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="logo"><i class="fas fa-music"></i></div>
+  <div class="container" role="main" aria-label="Welcome Section">
+    <div class="logo" aria-hidden="true"><i class="fas fa-music"></i></div>
     <h1>Welcome to Music Player</h1>
     <p>Your personalized audio experience. Stream your favorite songs, read lyrics, and discover more every day.</p>
-    
-    <div class="buttons">
+
+    <nav class="buttons" aria-label="Primary navigation">
       <a href="{% url 'register' %}">Register</a>
       <a href="{% url 'login' %}">Login</a>
-      <a href="/dashboard/"> Start Listening</a>
-    </div>
+      <a href="/dashboard/">Start Listening</a>
+    </nav>
   </div>
 
 </body>

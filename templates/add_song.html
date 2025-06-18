@@ -1,14 +1,13 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Add Song - Music Player</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <style>
     body {
       margin: 0;
@@ -19,32 +18,36 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .container {
       max-width: 500px;
-      width: 90%;
-      padding: 40px;
+      width: 100%;
+      padding: 40px 30px;
       background-color: rgba(30, 30, 47, 0.9);
       border-radius: 20px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-sizing: border-box;
     }
 
     h2 {
-      font-size: 30px;
+      font-size: 2rem;
       color: #00ffe1;
       margin-bottom: 30px;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
+      padding: 12px 15px;
+      margin: 12px 0;
       border: none;
       border-radius: 5px;
-      font-size: 16px;
+      font-size: 1rem;
+      box-sizing: border-box;
     }
 
     button {
@@ -57,7 +60,8 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background 0.3s ease;
-      margin-top: 10px;
+      margin-top: 15px;
+      font-size: 1rem;
     }
 
     button:hover {
@@ -65,11 +69,12 @@
     }
 
     .alert {
-      padding: 12px;
-      margin-bottom: 15px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
       border-radius: 5px;
       font-weight: bold;
       color: white;
+      text-align: left;
     }
 
     .alert.error {
@@ -87,12 +92,47 @@
     .alert.warning {
       background-color: #ff9800;
     }
+
+    /* Dashboard button styling */
+    .dashboard-btn {
+      margin-top: 25px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      background: #00ffe1;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .dashboard-btn:hover {
+      background: #00bfa5;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+        border-radius: 15px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+      }
+
+      input, select, textarea, button, .dashboard-btn {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+        margin: 10px 0;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    
 
     <h2>Add a New Song</h2>
 
@@ -107,9 +147,11 @@
       {{ form.as_p }}
       <button type="submit">Add Song</button>
     </form>
-     <button 
-    style=" padding: 10px 15px; border-radius: 10px; background: #00ffe1; border: none; cursor: pointer;"
-    onclick="location.href='/dashboard/'">Dashboard</button>
+
+    <button class="dashboard-btn" onclick="location.href='/dashboard/'">
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    </button>
+
   </div>
 
 </body>

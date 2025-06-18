@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Register - Music Player</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 20px;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #141e30, #243b55);
       color: white;
@@ -17,14 +20,17 @@
       align-items: center;
       height: 100vh;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .container {
       max-width: 400px;
-      padding: 40px;
+      width: 100%;
+      padding: 40px 30px;
       background-color: rgba(30, 30, 47, 0.9);
       border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-sizing: border-box;
     }
 
     h1 {
@@ -40,6 +46,7 @@
       border: none;
       border-radius: 5px;
       font-size: 16px;
+      box-sizing: border-box;
     }
 
     button {
@@ -64,6 +71,7 @@
       display: block;
       color: #00ffe1;
       text-decoration: none;
+      word-wrap: break-word;
     }
 
     .alert {
@@ -79,20 +87,46 @@
     }
 
     .alert.success {
-      background-color: #4CAF50;
+      background-color: #4caf50;
     }
 
     .alert.info {
-      background-color: #2196F3;
+      background-color: #2196f3;
     }
 
     .alert.warning {
       background-color: #ff9800;
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      body {
+        height: auto;
+        padding: 20px;
+      }
+
+      .container {
+        padding: 30px 20px;
+        border-radius: 15px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      input,
+      button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .back-link {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
-
   <div class="container">
     <h1>Register</h1>
 
@@ -106,15 +140,14 @@
 
     <form action="{% url 'register' %}" method="POST">
       {% csrf_token %}
-      <input type="text" placeholder="Full Name" name="full_name" required>
-      <input type="text" placeholder="Username" name="username" required>
-      <input type="email" placeholder="Email" name="email" required>
-      <input type="password" placeholder="Password" name="password" required>
+      <input type="text" placeholder="Full Name" name="full_name" required />
+      <input type="text" placeholder="Username" name="username" required />
+      <input type="email" placeholder="Email" name="email" required />
+      <input type="password" placeholder="Password" name="password" required />
       <button type="submit">Register</button>
     </form>
 
     <a class="back-link" href="{% url 'login' %}">← Back to Login</a>
   </div>
-
 </body>
 </html>

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-0+$hysog4ped0604cak$_i55c^))rl1y2_eypkq+_8^6^$*ne(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'music-player-rq95.onrender.com']
 
 
 # Application definition
@@ -133,5 +133,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-ALLOWED_HOSTS = ['music-player-rq95.onrender.com']
+
 
